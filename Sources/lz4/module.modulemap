@@ -1,0 +1,5 @@
+module lz4 {
+    header "lz4.h"
+    header "lz4hc.h"
+    export *
+}
