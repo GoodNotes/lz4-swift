@@ -32,7 +32,8 @@
     - LZ4 homepage : http://www.lz4.org
     - LZ4 source repository : https://github.com/lz4/lz4
 */
-#if defined (__cplusplus)
+#if defined(__cplusplus)
+# include <cstdint>
 extern "C" {
 #endif
 
@@ -655,7 +656,12 @@ LZ4_attach_dictionary(LZ4_stream_t* workingStream,
 #define LZ4_HASHTABLESIZE (1 << LZ4_MEMORY_USAGE)
 #define LZ4_HASH_SIZE_U32 (1 << LZ4_HASHLOG)       /* required as macro for static allocation */
 
-#if defined(__cplusplus) || (defined (__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L) /* C99 */)
+#if defined(__cplusplus)
+  typedef std::int8_t   LZ4_i8;
+  typedef std::uint8_t  LZ4_byte;
+  typedef std::uint16_t LZ4_u16;
+  typedef std::uint32_t LZ4_u32;
+#elif defined (__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L) /* C99 */
 # include <stdint.h>
   typedef  int8_t  LZ4_i8;
   typedef uint8_t  LZ4_byte;
